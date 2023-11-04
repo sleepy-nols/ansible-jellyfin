@@ -1,0 +1,77 @@
+---
+
+- name: Install package dependencies
+  apt: 
+    pkg:
+      - curl
+      - gnupg
+      - python3
+
+- name: Make dirs
+  file:
+    name:
+    - "/etc/apt/trusted.gpg.d"
+    - "/etc/apt/sources.list.d"
+    state: directory
+
+- name: Make gpg temp dir
+  tempfile:
+    state: "directory"
+  register: gpg_tempdir
+
+- name: Get Jellyfin GPG signing key
+  get_url:
+    url: "https://repo.jellyfin.org/jellyfin_team.gpg.key"
+    dest: "{{ gpg_tempdir.path }}/jellyfin.asc"
+    force: true
+    mode: '0644'
+
+- name: Dearmor Jellyfin GPG signing key
+  shell: "gpg --dearmor -o {{ gpg_tempdir.path }}/jellyfin.gpg {{ gpg_tempdir.path }}/jellyfin.asc"
+
+- name: Copy Jellyfin GPG sigining key to apt path
+  shell: "cp {{ gpg_tempdir.path }}/jellyfin.gpg /etc/apt/trusted.gpg.d/jellyfin.gpg"
+
+- name: Gather dpkg architecture info
+  shell: |
+    dpkg --print-architecture
+  register: dpkg_content
+
+- set_fact:
+    version_os: "{{ hostvars[inventory_hostname].ansible_distribution | lower }}"
+    version_codename: "{{ hostvars[inventory_hostname].ansible_distribution_release | lower }}"
+    arch: "{{ dpkg_content.stdout | lower }}"
+
+# if ansible-core >= 2.15
+#
+# - name: Add Jellyfin repo
+#   deb822_repository:
+#     name: jellyfin
+#     types: deb
+#     uris: "https://repo.jellyfin.org/{{ version_os }}"
+#     suites: "{{ version_codename }}"
+#     components: main
+#     architectures: "{{ arch }}"
+#     signed_by: /etc/apt/trusted.gpg.d/jellyfin.pgp
+
+- name: Add Jellyfin Repo
+  template:
+    src: "jellyfin.sources.jinja"
+    dest: "/etc/apt/sources.list.d/jellyfin.sources"
+
+- name: Install Jellyfin
+  apt:
+    name: "jellyfin"
+    state: "latest"
+    update_cache: yes
+
+- name: Restart and enable Jellyfin systemd service
+  systemd:
+    name: jellyfin.service
+    state: restarted
+    enabled: true
+  when: (jellyfin_restart|bool)
+
+- name: Message
+  debug:
+    msg: "Please setup Jellyfin in the Webinterface at http://SERVER_IP:8096"
