@@ -1,0 +1,65 @@
+
+#
+# Ansible managed
+#
+
+# Jellyfin default configuration options
+# This is a POSIX shell fragment
+
+# Use this file to override the default configurations; add additional
+# options with JELLYFIN_ADD_OPTS.
+
+# Under systemd, use
+#  /etc/systemd/system/jellyfin.service.d/jellyfin.service.conf
+# to override the user or this config file's location.
+
+#
+# General options
+#
+
+# Program directories
+JELLYFIN_DATA_DIR="{{ jellyfin_data_dir }}"
+JELLYFIN_CONFIG_DIR="{{ jellyfin_config_dir }}"
+JELLYFIN_LOG_DIR="{{ jellyfin_log_dir }}"
+JELLYFIN_CACHE_DIR="{{ jellyfin_cache_dir }}"
+
+# web client path, installed by the jellyfin-web package
+JELLYFIN_WEB_OPT="{{ jellyfin_web_opt }}"
+
+# Restart script for in-app server control
+JELLYFIN_RESTART_OPT="{{ jellyfin_restart_opt }}"
+
+# ffmpeg binary paths, overriding the system values
+JELLYFIN_FFMPEG_OPT="{{ jellyfin_ffmpeg_opt }}"
+
+# Disable glibc dynamic heap adjustment
+MALLOC_TRIM_THRESHOLD_=131072
+
+# [OPTIONAL] run Jellyfin as a headless service
+{% if jellyfin_service_opt is defined %}
+JELLYFIN_SERVICE_OPT="{{ jellyfin_service_opt }}"
+{% endif %}
+
+# [OPTIONAL] run Jellyfin without the web app
+{% if jellyfin_nowebapp_opt is defined %}
+JELLYFIN_NOWEBAPP_OPT="{{ jellyfin_nowebapp_opt }}"
+{% endif %}
+
+# Space to add additional command line options to jellyfin (for help see ~$ jellyfin --help)
+JELLYFIN_ADDITIONAL_OPTS="{{ jellyfin_additional_opts }}"
+
+# [OPTIONAL] run Jellyfin with ASP.NET Server Garbage Collection (uses more RAM and less CPU than Workstation GC)
+# 0 = Workstation
+# 1 = Server
+#COMPlus_gcServer=1
+
+#
+# SysV init/Upstart options
+#
+# Note: These options are ignored by systemd; use /etc/systemd/system/jellyfin.d overrides instead.
+#
+
+# Application username
+JELLYFIN_USER="{{ jellyfin_user }}"
+# Full application command
+JELLYFIN_ARGS="$JELLYFIN_WEB_OPT $JELLYFIN_RESTART_OPT $JELLYFIN_FFMPEG_OPT $JELLYFIN_SERVICE_OPT $JELLYFIN_NOWEBAPP_OPT $JELLFIN_ADDITIONAL_OPTS"

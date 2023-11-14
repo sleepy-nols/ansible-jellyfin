@@ -1,0 +1,17 @@
+- name: Make gpg temp dir
+  tempfile:
+    state: "directory"
+  register: gpg_tempdir
+
+- name: Get Jellyfin GPG signing key
+  get_url:
+    url: "https://repo.jellyfin.org/jellyfin_team.gpg.key"
+    dest: "{{ gpg_tempdir.path }}/jellyfin.asc"
+    force: true
+    mode: '0644'
+
+- name: Dearmor Jellyfin GPG signing key
+  shell: "gpg --dearmor -o {{ gpg_tempdir.path }}/jellyfin.gpg {{ gpg_tempdir.path }}/jellyfin.asc"
+
+- name: Copy Jellyfin GPG sigining key to apt path
+  shell: "cp {{ gpg_tempdir.path }}/jellyfin.gpg /etc/apt/trusted.gpg.d/jellyfin.gpg"

@@ -1,3 +1,22 @@
 ---
 
-jellyfin_restart: true
+jellyfin_skip_restart: true
+
+jellyfin_user: "jellyfin"
+
+jellyfin_additional_opts: ""
+
+# Paths
+jellyfin_restart_opt: "--restartpath=/usr/lib/jellyfin/restart.sh"
+jellyfin_ffmpeg_opt: "--ffmpeg=/usr/lib/jellyfin-ffmpeg/ffmpeg"
+jellyfin_web_opt: "--webdir=/usr/share/jellyfin/web"
+
+# Directories
+jellyfin_cache_dir: "/var/cache/jellyfin"
+jellyfin_log_dir: "/var/log/jellyfin"
+jellyfin_config_dir: "/etc/jellyfin"
+jellyfin_data_dir: "/var/lib/jellyfin"
+
+# optional
+# jellyfin_nowebapp_opt: "--nowebclient"
+# jellyfin_service_opt: "--service"

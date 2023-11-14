@@ -1,0 +1,6 @@
+---
+- name: Configure Jellyfin
+  template:
+    src: templates/config.jinja
+    dest: /etc/default/jellyfin
+    force: yes

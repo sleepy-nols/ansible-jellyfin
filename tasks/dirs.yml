@@ -1,0 +1,9 @@
+---
+- name: Make dirs
+  file:
+    path:
+    - "{{ jellyfin_cache_dir }}"
+    - "{{ jellyfin_log_dir }}"
+    - "{{ jellyfin_config_dir }}"
+    - "{{ jellyfin_data_dir }}"
+    state: directory
