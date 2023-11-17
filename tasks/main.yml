@@ -10,7 +10,7 @@
 - name: Make dirs
   file:
     path:
-    - "/etc/apt/trusted.gpg.d"
+    - "/etc/apt/keyrings"
     - "/etc/apt/sources.list.d"
     state: directory
 
