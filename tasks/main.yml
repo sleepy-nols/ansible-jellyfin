@@ -3,9 +3,7 @@
 - name: Install dependencies
   apt: 
     pkg:
-      - curl
       - gnupg
-      - python3
 
 - name: Make dirs
   file:
