@@ -4,3 +4,4 @@
     src: templates/config.jinja
     dest: /etc/default/jellyfin
     force: yes
+  notify: Restart Jellyfin

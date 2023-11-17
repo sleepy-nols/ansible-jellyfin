@@ -1,6 +1,6 @@
 ---
 
-- name: Install package dependencies
+- name: Install dependencies
   apt: 
     pkg:
       - curl
@@ -54,19 +54,13 @@
   loop:
     - "jellyfin-web"
     - "jellyfin-server"
+  notify: Restart Jellyfin
 
 - include_tasks:
     file: dirs.yml
 
 - include_tasks:
     file: config.yml
-
-- name: Restart and enable Jellyfin systemd service
-  systemd:
-    name: jellyfin.service
-    state: restarted
-    enabled: true
-  when: not (jellyfin_skip_restart | bool)
 
 - name: Message
   debug:
