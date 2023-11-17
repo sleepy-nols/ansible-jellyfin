@@ -61,7 +61,3 @@
 
 - include_tasks:
     file: config.yml
-
-- name: Message
-  debug:
-    msg: "Please setup Jellyfin in the Webinterface at http://SERVER_IP:8096"
