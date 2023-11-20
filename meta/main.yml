@@ -1,0 +1,15 @@
+---
+galaxy_info:
+  role_name: jellyfin
+  author: nols
+  description: Deploy and configure a Jellyfin instance
+  license: GPLv3
+  github_branch: main
+  platforms:
+    - name: Debian
+      versions:
+        - stretch
+        - buster
+  galaxy_tags:
+    - jellyfin
+dependencies: []
