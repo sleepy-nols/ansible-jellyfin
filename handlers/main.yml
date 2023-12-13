@@ -5,3 +5,10 @@
     state: restarted
     enabled: true
   when: not (jellyfin_skip_restart | bool)
+
+
+- name: Restart fail2ban
+  systemd:
+    name: fail2ban.service
+    state: restarted
+    enabled: true
