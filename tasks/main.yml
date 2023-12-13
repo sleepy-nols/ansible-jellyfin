@@ -46,9 +46,7 @@
 
 - name: Install Jellyfin
   apt:
-    name: "jellyfin"
-    state: "latest"
-    update_cache: yes
+    pkg: "{{ item }}"
   loop:
     - "jellyfin-web"
     - "jellyfin-server"
