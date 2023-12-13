@@ -54,8 +54,7 @@
     - "jellyfin-server"
   notify: Restart Jellyfin
 
-- include_tasks:
-    file: dirs.yml
+- include_tasks: dirs.yml
 
-- include_tasks:
-    file: config.yml
+- name: Make config
+  include_tasks: config.yml
