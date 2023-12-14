@@ -59,7 +59,13 @@
   notify: Restart Jellyfin
 
 - name: Make dirs
-  include_tasks: dirs.yml
+  file:
+    path:
+    - "{{ jellyfin_cache_dir }}"
+    - "{{ jellyfin_log_dir }}"
+    - "{{ jellyfin_config_dir }}"
+    - "{{ jellyfin_data_dir }}"
+    state: directory
 
 - name: Configure fail2ban
   include_tasks: fail2ban.yml
