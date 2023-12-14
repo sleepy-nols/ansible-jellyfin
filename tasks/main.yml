@@ -58,7 +58,12 @@
     - "jellyfin-server"
   notify: Restart Jellyfin
 
-- include_tasks: dirs.yml
+- name: Make dirs
+  include_tasks: dirs.yml
 
-- name: Make config
+- name: Configure fail2ban
+  include_tasks: fail2ban.yml
+  when: jellyfin_enable_fail2ban == true
+
+- name: Configure Jellyfin
   include_tasks: config.yml
