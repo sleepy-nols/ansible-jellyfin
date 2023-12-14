@@ -1,0 +1,20 @@
+---
+
+- name: Install fail2ban and dependencies
+  apt:
+    pkg:
+      - "fail2ban"
+      - "iptables"
+  notify: Restart fail2ban
+
+- name: Create fail2ban jail
+  template:
+    src: templates/fail2ban_jail
+    dest: /etc/fail2ban/jail.d/jellyfin.local
+  notify: Restart fail2ban
+
+- name: Create fail2ban filter
+  template:
+    src: templates/fail2ban_filter
+    dest: /etc/fail2ban/filter.d/jellyfin.conf
+  notify: Restart fail2ban
