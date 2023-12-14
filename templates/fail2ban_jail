@@ -1,0 +1,12 @@
+[jellyfin]
+
+backend = auto
+enabled = true
+port = {% for p in jellyfin_fail2ban_ports %}{{ p }}{% if not loop.last %},{% endif %}{% endfor %}
+
+protocol = tcp
+filter = jellyfin
+maxretry = {{ jellyfin_fail2ban_maxretry | default("3") }}
+bantime = {{ jellyfin_fail2ban_bantime | default("86400") }}
+findtime = {{ jellyfin_fail2ban_findtime | default("43200") }}
+logpath = {{ jellyfin_log_dir }}/jellyfin*.log
