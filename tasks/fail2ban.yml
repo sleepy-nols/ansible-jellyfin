@@ -12,12 +12,14 @@
     src: templates/fail2ban_jail
     dest: /etc/fail2ban/jail.d/jellyfin.local
   notify: Restart fail2ban
+  diff: true
 
 - name: Create fail2ban filter
   template:
     src: templates/fail2ban_filter
     dest: /etc/fail2ban/filter.d/jellyfin.conf
   notify: Restart fail2ban
+  diff: true
 
 - name: Gather package facts
   package_facts:
@@ -30,3 +32,4 @@
     regexp: "(?<=[sshd]\nenabled = )true"
     replace: "false"
   when: "'openssh-server' not in ansible_facts.packages"
+  diff: true
