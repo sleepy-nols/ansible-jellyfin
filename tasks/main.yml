@@ -12,8 +12,14 @@
     - "/etc/apt/sources.list.d"
     state: directory
 
-- include_tasks:
-    file: apt_gpg.yml
+- name: Check if Jellyfin apt key already exists
+  stat:
+    path: "/etc/apt/keyrings/jellyfin.gpg"
+  register: jellyfin_apt_key
+
+- name: Install apt key
+  include_tasks: apt_gpg.yml
+  when: not jellyfin_apt_key.stat.isreg or jellyfin_skip_apt_key == false
 
 - name: Gather dpkg architecture info
   shell: "dpkg --print-architecture"
