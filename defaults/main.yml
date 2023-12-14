@@ -1,7 +1,7 @@
 ---
 
-jellyfin_skip_apt_key: true
-jellyfin_skip_restart: true
+jellyfin_skip_apt_key: false
+jellyfin_skip_restart: false
 jellyfin_enable_fail2ban: false
 jellyfin_fail2ban_ports:
   - "80"
