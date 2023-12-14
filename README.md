@@ -7,15 +7,34 @@ User that Jellyfin runs as.
 ```yml
 jellyfin_user: "jellyfin"
 ```
+Skip restarting Jellyfin, even on config change.
+```yml
+jellyfin_skip_restart: false
+```
+Enable fail2ban integration for the Jellyfin login.
+```yml
+jellyfin_enable_fail2ban: false
+```
+Set these if you use custom ports for Jellyfin.
+```yml
+jellyfin_fail2ban_ports:
+  - "80"
+  - "443"
+```
+Configuration of fail2ban parameters. You probably want to tweak these according to your userbase and threadmodel.
+```yml
+jellyfin_fail2ban_maxretry: "3"
+jellyfin_fail2ban_bantime: "6000"
+jellyfin_fail2ban_findtime: "600"
+```
 
-  
 Additional Jellyfin options as in [Main Configuration Options](https://jellyfin.org/docs/general/administration/configuration#main-configuration-options)
 ```yml
 jellyfin_additional_opts: ""
 ```
 
   
-Paths
+Jellyfin Paths
 ```yml
 jellyfin_restart_opt: "--restartpath=/usr/lib/jellyfin/restart.sh"
 jellyfin_ffmpeg_opt: "--ffmpeg=/usr/lib/jellyfin-ffmpeg/ffmpeg"
@@ -23,7 +42,7 @@ jellyfin_web_opt: "--webdir=/usr/share/jellyfin/web"
 ```
 
   
-Directories
+Jellyfin Directories
 ```yml
 jellyfin_cache_dir: "/var/cache/jellyfin"
 jellyfin_log_dir: "/var/log/jellyfin"
