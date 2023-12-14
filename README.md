@@ -21,7 +21,7 @@ jellyfin_fail2ban_ports:
   - "80"
   - "443"
 ```
-Configuration of fail2ban parameters. You probably want to tweak these according to your userbase and threadmodel.
+Configuration of fail2ban parameters. You probably want to tweak these according to your userbase and threatmodel.
 ```yml
 jellyfin_fail2ban_maxretry: "3"
 jellyfin_fail2ban_bantime: "6000"
