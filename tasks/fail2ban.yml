@@ -18,3 +18,15 @@
     src: templates/fail2ban_filter
     dest: /etc/fail2ban/filter.d/jellyfin.conf
   notify: Restart fail2ban
+
+- name: Gather package facts
+  package_facts:
+    manager: apt
+  changed_when: false
+
+- name: Disable fail2ban for sshd when sshd is not installed
+  replace:
+    path: "/etc/fail2ban/jail.d/defaults-debian.conf"
+    regexp: "(?<=[sshd]\nenabled = )true"
+    replace: "false"
+  when: "'openssh-server' not in ansible_facts.packages"
