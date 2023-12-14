@@ -16,6 +16,7 @@
   stat:
     path: "/etc/apt/keyrings/jellyfin.gpg"
   register: jellyfin_apt_key
+  changed_when: false
 
 - name: Install apt key
   include_tasks: apt_key.yml
