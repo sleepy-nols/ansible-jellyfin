@@ -18,9 +18,10 @@
   register: jellyfin_apt_key
   changed_when: false
 
+
 - name: Install apt key
   include_tasks: apt_key.yml
-  when: not jellyfin_apt_key.stat.isreg
+  # when: not jellyfin_apt_key.stat.isreg
 
 - name: Gather dpkg architecture info
   shell: "dpkg --print-architecture"
