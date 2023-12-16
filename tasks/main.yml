@@ -4,6 +4,7 @@
   apt: 
     pkg:
       - gnupg
+      - libicu72
 
 - name: Make dirs
   file:
