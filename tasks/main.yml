@@ -60,6 +60,7 @@
   loop:
     - "jellyfin-web"
     - "jellyfin-server"
+    - "jellyfin-ffmpeg"
   notify: Restart Jellyfin
 
 - name: Make dirs
