@@ -58,9 +58,7 @@
     pkg: "{{ item }}"
     update_cache: true
   loop:
-    - "jellyfin-web"
-    - "jellyfin-server"
-    - "jellyfin-ffmpeg"
+    - "jellyfin"
   notify: Restart Jellyfin
 
 - name: Make dirs
