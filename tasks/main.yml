@@ -57,10 +57,10 @@
 - name: Make dirs
   ansible.builtin.file:
     path:
-    - "{{ jellyfin_cache_dir }}"
-    - "{{ jellyfin_log_dir }}"
-    - "{{ jellyfin_config_dir }}"
-    - "{{ jellyfin_data_dir }}"
+      - "{{ jellyfin_cache_dir }}"
+      - "{{ jellyfin_log_dir }}"
+      - "{{ jellyfin_config_dir }}"
+      - "{{ jellyfin_data_dir }}"
     state: directory
     owner: "{{ jellyfin_user }}"
     group: "{{ jellyfin_user }}"
@@ -68,7 +68,7 @@
 
 - name: Configure fail2ban
   ansible.builtin.include_tasks: fail2ban.yml
-  when: jellyfin_enable_fail2ban == true
+  when: jellyfin_enable_fail2ban
 
 - name: Configure Jellyfin
   ansible.builtin.include_tasks: config.yml
