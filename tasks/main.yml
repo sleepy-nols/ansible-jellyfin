@@ -50,10 +50,8 @@
 
 - name: Install Jellyfin
   ansible.builtin.apt:
-    pkg: "{{ item }}"
+    pkg: "jellyfin"
     update_cache: true
-  loop:
-    - "jellyfin"
   notify: Restart Jellyfin
 
 - name: Make dirs

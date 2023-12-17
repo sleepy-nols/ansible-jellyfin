@@ -3,5 +3,5 @@
   ansible.builtin.template:
     src: templates/config.jinja
     dest: /etc/default/jellyfin
-    force: yes
+    force: true
   notify: Restart Jellyfin
