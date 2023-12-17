@@ -10,17 +10,21 @@
   ansible.builtin.file:
     path:
       - "/etc/apt/keyrings"
-      - "/etc/apt/sources.list.d"
     state: directory
+    owner: "root"
+    group: "root"
+    mode: "0744"
 
 - name: Get Jellyfin GPG signing key
   ansible.builtin.get_url:
     url: "https://repo.jellyfin.org/jellyfin_team.gpg.key"
     dest: "/etc/apt/keyrings/jellyfin.asc"
+    owner: "root"
+    group: "root"
     mode: '0644'
 
 - name: Gather dpkg architecture info
-  ansible.builtin.shell: "dpkg --print-architecture"
+  ansible.builtin.command: "dpkg --print-architecture"
   register: dpkg_content
   changed_when: false
 
@@ -47,6 +51,9 @@
   ansible.builtin.template:
     src: "jellyfin.sources.jinja"
     dest: "/etc/apt/sources.list.d/jellyfin.sources"
+    owner: "root"
+    group: "root"
+    mode: "0644"
 
 - name: Install Jellyfin
   ansible.builtin.apt:
