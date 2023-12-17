@@ -50,6 +50,14 @@ jellyfin_config_dir: "/etc/jellyfin"
 jellyfin_data_dir: "/var/lib/jellyfin"
 ```
 
+## Installing
+
+Install via Ansible Galaxy or clone the Repo
+```
+ansible-galaxy role install sleepy-nols.jellyfin
+
+git clone git@github.com:sleepy-nols/ansible-jellyfin.git
+```
   
 ## Example Playbook
 
