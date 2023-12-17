@@ -62,6 +62,9 @@
     - "{{ jellyfin_config_dir }}"
     - "{{ jellyfin_data_dir }}"
     state: directory
+    owner:  "{{ jellyfin_user }}"
+    group: "{{ jellyfin_user }}"
+    mode: "0755"
 
 - name: Configure fail2ban
   ansible.builtin.include_tasks: fail2ban.yml
