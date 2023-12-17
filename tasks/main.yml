@@ -13,16 +13,11 @@
       - "/etc/apt/sources.list.d"
     state: directory
 
-- name: Check if Jellyfin apt key already exists
-  ansible.builtin.stat:
-    path: "/etc/apt/keyrings/jellyfin.gpg"
-  register: jellyfin_apt_key
-  changed_when: false
-
-
-- name: Install apt key
-  ansible.builtin.include_tasks: apt_key.yml
-  # when: not jellyfin_apt_key.stat.isreg
+- name: Get Jellyfin GPG signing key
+  ansible.builtin.get_url:
+    url: "https://repo.jellyfin.org/jellyfin_team.gpg.key"
+    dest: "/etc/apt/keyrings/jellyfin.asc"
+    mode: '0644'
 
 - name: Gather dpkg architecture info
   ansible.builtin.shell: "dpkg --print-architecture"
