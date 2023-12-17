@@ -12,5 +12,5 @@ galaxy_info:
         - buster
   galaxy_tags:
     - jellyfin
-  min_ansible_version: "2.13.9"
+  min_ansible_version: "2.14"
 dependencies: []
