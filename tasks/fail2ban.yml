@@ -35,3 +35,4 @@
     replace: "false"
   when: "'openssh-server' not in ansible_facts.packages"
   diff: true
+  notify: Restart fail2ban
