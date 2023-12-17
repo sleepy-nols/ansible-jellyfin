@@ -1,36 +1,36 @@
 ---
 
 - name: Install dependencies
-  apt: 
+  ansible.builtin.apt:
     pkg:
       - gnupg
       - libicu72
 
 - name: Make dirs
-  file:
+  ansible.builtin.file:
     path:
-    - "/etc/apt/keyrings"
-    - "/etc/apt/sources.list.d"
+      - "/etc/apt/keyrings"
+      - "/etc/apt/sources.list.d"
     state: directory
 
 - name: Check if Jellyfin apt key already exists
-  stat:
+  ansible.builtin.stat:
     path: "/etc/apt/keyrings/jellyfin.gpg"
   register: jellyfin_apt_key
   changed_when: false
 
 
 - name: Install apt key
-  include_tasks: apt_key.yml
+  ansible.builtin.include_tasks: apt_key.yml
   # when: not jellyfin_apt_key.stat.isreg
 
 - name: Gather dpkg architecture info
-  shell: "dpkg --print-architecture"
+  ansible.builtin.shell: "dpkg --print-architecture"
   register: dpkg_content
   changed_when: false
 
 - name: Set system info
-  set_fact:
+  ansible.builtin.set_fact:
     version_os: "{{ hostvars[inventory_hostname].ansible_distribution | lower }}"
     version_codename: "{{ hostvars[inventory_hostname].ansible_distribution_release | lower }}"
     arch: "{{ dpkg_content.stdout | lower }}"
@@ -49,12 +49,12 @@
 #     signed_by: /etc/apt/trusted.gpg.d/jellyfin.pgp
 
 - name: Add Jellyfin Repo
-  template:
+  ansible.builtin.template:
     src: "jellyfin.sources.jinja"
     dest: "/etc/apt/sources.list.d/jellyfin.sources"
 
 - name: Install Jellyfin
-  apt:
+  ansible.builtin.apt:
     pkg: "{{ item }}"
     update_cache: true
   loop:
@@ -62,7 +62,7 @@
   notify: Restart Jellyfin
 
 - name: Make dirs
-  file:
+  ansible.builtin.file:
     path:
     - "{{ jellyfin_cache_dir }}"
     - "{{ jellyfin_log_dir }}"
@@ -71,8 +71,8 @@
     state: directory
 
 - name: Configure fail2ban
-  include_tasks: fail2ban.yml
+  ansible.builtin.include_tasks: fail2ban.yml
   when: jellyfin_enable_fail2ban == true
 
 - name: Configure Jellyfin
-  include_tasks: config.yml
+  ansible.builtin.include_tasks: config.yml

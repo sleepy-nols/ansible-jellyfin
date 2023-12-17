@@ -1,33 +1,33 @@
 ---
 
 - name: Install fail2ban and dependencies
-  apt:
+  ansible.builtin.apt:
     pkg:
       - "fail2ban"
       - "iptables"
   notify: Restart fail2ban
 
 - name: Create fail2ban jail
-  template:
+  ansible.builtin.template:
     src: templates/fail2ban_jail
     dest: /etc/fail2ban/jail.d/jellyfin.local
   notify: Restart fail2ban
   diff: true
 
 - name: Create fail2ban filter
-  template:
+  ansible.builtin.template:
     src: templates/fail2ban_filter
     dest: /etc/fail2ban/filter.d/jellyfin.conf
   notify: Restart fail2ban
   diff: true
 
 - name: Gather package facts
-  package_facts:
+  ansible.builtin.package_facts:
     manager: apt
   changed_when: false
 
 - name: Disable fail2ban for sshd when sshd is not installed
-  replace:
+  ansible.builtin.replace:
     path: "/etc/fail2ban/jail.d/defaults-debian.conf"
     regexp: "(?<=[sshd]\nenabled = )true"
     replace: "false"

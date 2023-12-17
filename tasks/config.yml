@@ -1,6 +1,6 @@
 ---
 - name: Configure Jellyfin
-  template:
+  ansible.builtin.template:
     src: templates/config.jinja
     dest: /etc/default/jellyfin
     force: yes

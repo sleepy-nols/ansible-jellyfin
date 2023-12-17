@@ -1,13 +1,13 @@
 ---
 - name: Restart Jellyfin
-  systemd:
+  ansible.builtin.systemd:
     name: jellyfin.service
     state: restarted
     enabled: true
   when: not (jellyfin_skip_restart | bool)
 
 - name: Restart fail2ban
-  systemd:
+  ansible.builtin.systemd:
     name: fail2ban.service
     state: restarted
     enabled: true
