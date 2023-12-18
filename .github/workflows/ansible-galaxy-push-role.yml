@@ -17,4 +17,4 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Push to Galaxy
-        run: ansible-galaxy role import sleepy-nols ansible-jellyfin --branch main --token $ANSIBLE_GALAXY_API_KEY
+        run: ansible-galaxy role import sleepy-nols ansible-jellyfin --branch main --token ${{ secrets.ANSIBLE_GALAXY_API_KEY }}
