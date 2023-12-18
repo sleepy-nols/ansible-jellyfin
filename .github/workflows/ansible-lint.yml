@@ -5,7 +5,9 @@ on:
     branches:
       - main
   pull_request:
-    branches: ["main", "stable", "release/v*"]
+    branches:
+      - main
+      - devel
 jobs:
   build:
     name: Ansible Lint # Naming the build is important to use it as a status check
