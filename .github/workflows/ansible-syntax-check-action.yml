@@ -46,14 +46,14 @@ jobs:
 
       # If `roles` folder does not exist, assume we are in a repository containing just the role
       - name: Creating role_repo.yml from roles folder (if exists)
-        run: test -d "tasks" || exit 0 && echo $LINE1 > /tmp/role_repo.yml && echo $LINE2 >> /tmp/role_repo.yml && printf "  roles:\n" >> /tmp/role_repo.yml && printf "  - `echo $GITHUB_REPOSITORY | tr "/" "\n" | tail -1`\n" >> /tmp/role_repo.yml
+        run: test -d "tasks" || exit 0 && echo $LINE1 > /tmp/role_repo.yml && echo $LINE2 >> /tmp/role_repo.yml && printf "  roles:\n" >> /tmp/role_repo.yml && printf "  - `echo $GITHUB_REPOSITORY | tr "/" "\n" | tail -1`\n" >> /tmp/role_repo.yml  # noqa 204
         env:
           LINE1: "---"
           LINE2: "- hosts: localhost"
 
       # Copy the repo content for syntax check
       - name: Copy the repo content to /tmp/ for syntax check
-        run: test -f "/tmp/role_repo.yml" || exit 0 &&  mkdir -p /tmp/roles/ && cd .. && cp -a `echo $GITHUB_REPOSITORY | tr "/" "\n" | tail -1` /tmp/roles/
+        run: test -f "/tmp/role_repo.yml" || exit 0 &&  mkdir -p /tmp/roles/ && cd .. && cp -a `echo $GITHUB_REPOSITORY | tr "/" "\n" | tail -1` /tmp/roles/  # noqa 204
 
       # Check ansible syntax if tasks folder exists (repo with just the role)
       - name: Ansible Syntax Check of role
