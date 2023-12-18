@@ -1,0 +1,18 @@
+# Pushes a Ansible role to Ansible Galaxy
+
+name: Ansible Galaxy Push Role
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  ansible_galaxy_push_role:
+    runs-on: ubuntu-latest
+
+    - uses: actions/checkout@v2
+
+    - name: Push to Galaxy
+      run: ansible-galaxy role import sleepy-nols ansible-jellyfin --branch main --token $ANSIBLE_GALAXY_API_KEY
