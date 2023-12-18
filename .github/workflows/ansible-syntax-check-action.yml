@@ -33,7 +33,7 @@ jobs:
 
       # If `roles` folder exists, create a playbook_repo.yml playbook to perform the syntax check
       - name: Creating playbook_repo.yml from roles folder (if exists)
-        run: test -d "roles" || exit 0 && echo $LINE1 > playbook_repo.yml && echo $LINE2 >> playbook_repo.yml && printf "  roles:\n" >> playbook_repo.yml &&  for i in `ls roles`; do echo "  - $i" >> playbook_repo.yml; done
+        run: test -d "roles" || exit 0 && echo $LINE1 > playbook_repo.yml && echo $LINE2 >> playbook_repo.yml && printf "  roles:\n" >> playbook_repo.yml &&  for i in `ls roles`; do echo "  - $i" >> playbook_repo.yml; done  # noqa 204
         env:
           LINE1: "---"
           LINE2: "- hosts: localhost"
@@ -42,7 +42,7 @@ jobs:
       - name: Ansible Syntax Check of all roles of the playbook
         run: test -f "playbook_repo.yml" || exit 0 && ansible-playbook $GITHUB_WORKSPACE/playbook_repo.yml --syntax-check
         env:
-           ANSIBLE_ACTION_WARNINGS: False
+          ANSIBLE_ACTION_WARNINGS: False
 
       # If `roles` folder does not exist, assume we are in a repository containing just the role
       - name: Creating role_repo.yml from roles folder (if exists)
@@ -53,11 +53,10 @@ jobs:
 
       # Copy the repo content for syntax check
       - name: Copy the repo content to /tmp/ for syntax check
-        run: test -f "/tmp/role_repo.yml" || exit 0 &&  mkdir -p /tmp/roles/ && cd .. && cp -a `echo $GITHUB_REPOSITORY | tr "/" "\n" | tail -1` /tmp/roles/ 
+        run: test -f "/tmp/role_repo.yml" || exit 0 &&  mkdir -p /tmp/roles/ && cd .. && cp -a `echo $GITHUB_REPOSITORY | tr "/" "\n" | tail -1` /tmp/roles/
 
       # Check ansible syntax if tasks folder exists (repo with just the role)
       - name: Ansible Syntax Check of role
         run: test -f "/tmp/role_repo.yml" || exit 0 &&  ANSIBLE_ROLES_PATH=/tmp/roles  ansible-playbook /tmp/role_repo.yml --syntax-check
         env:
-           ANSIBLE_ACTION_WARNINGS: False
-
+          ANSIBLE_ACTION_WARNINGS: False
