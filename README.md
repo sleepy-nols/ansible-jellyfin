@@ -1,6 +1,11 @@
 # Jellyfin
 Ansible role to install and configure [Jellyfin](https://jellyfin.org/) on Debian.
 
+This repository is **mirrored** form [**gitlab.com**](https://gitlab.com/sleepy_nols/ansible-jellyfin) to [**github.com**](https://github.com/sleepy-nols/ansible-jellyfin), please open issues at Gitlab.
+
+![ansible-lint](https://gitlab.com/sleepy_nols/ansible-jellyfin/badges/devel/pipeline.svg)
+![push-galaxy](https://github.com/sleepy-nols/ansible-jellyfin/actions/workflows/ansible-galaxy-push-role.yml/badge.svg)
+
 ## Role Variables and Defaults
 
 User that Jellyfin runs as.
@@ -76,7 +81,7 @@ You still need to do the initial configuration via the webinterface
 
 ## Contributing
 
-Contributions are welcome, please write meaningfull commit messages :)
+Contributions on **Gitlab** are welcome, please write meaningfull commit messages :)
 
 ## License
 GPLv3
