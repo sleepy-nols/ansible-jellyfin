@@ -1,9 +1,7 @@
 # Ansible Role Jellyfin
 Ansible role to install and configure [Jellyfin](https://jellyfin.org/) on Debian.
 
-This repository is **mirrored** form [**gitlab.com**](https://gitlab.com/sleepy_nols/ansible-jellyfin) to [**github.com**](https://github.com/sleepy-nols/ansible-jellyfin), please open issues at Gitlab.
-
-![ansible-lint](https://gitlab.com/sleepy_nols/ansible-jellyfin/badges/main/pipeline.svg)
+![ansible-lint](https://github.com/sleepy-nols/ansible-jellyfin/actions/workflows/ansible-lint.yml/badge.svg)
 ![push-galaxy](https://github.com/sleepy-nols/ansible-jellyfin/actions/workflows/ansible-galaxy-push-role.yml/badge.svg)
 
 ## Role Variables and Defaults
@@ -38,7 +36,7 @@ Additional Jellyfin options as in [Main Configuration Options](https://jellyfin.
 jellyfin_additional_opts: ""
 ```
 
-  
+
 Jellyfin Paths
 ```yml
 jellyfin_restart_opt: "--restartpath=/usr/lib/jellyfin/restart.sh"
@@ -46,7 +44,7 @@ jellyfin_ffmpeg_opt: "--ffmpeg=/usr/lib/jellyfin-ffmpeg/ffmpeg"
 jellyfin_web_opt: "--webdir=/usr/share/jellyfin/web"
 ```
 
-  
+
 Jellyfin Directories
 ```yml
 jellyfin_cache_dir: "/var/cache/jellyfin"
@@ -63,7 +61,7 @@ ansible-galaxy role install sleepy-nols.jellyfin
 
 git clone git@github.com:sleepy-nols/ansible-jellyfin.git
 ```
-  
+
 ## Example Playbook
 
 ```yml
@@ -75,13 +73,13 @@ git clone git@github.com:sleepy-nols/ansible-jellyfin.git
 ## Out of Role Scope
 
 - Initial configuration
-  
+
 You still need to do the initial configuration via the webinterface
 
 
 ## Contributing
 
-Contributions on **Gitlab** are welcome, please write meaningfull commit messages :)
+Contributions on are welcome, please write meaningfull commit messages :)
 
 ## License
 GPLv3
