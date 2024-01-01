@@ -1,4 +1,4 @@
-# Jellyfin
+# Ansible Role Jellyfin
 Ansible role to install and configure [Jellyfin](https://jellyfin.org/) on Debian.
 
 This repository is **mirrored** form [**gitlab.com**](https://gitlab.com/sleepy_nols/ansible-jellyfin) to [**github.com**](https://github.com/sleepy-nols/ansible-jellyfin), please open issues at Gitlab.
