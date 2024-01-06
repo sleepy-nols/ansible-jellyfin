@@ -70,13 +70,6 @@ git clone git@github.com:sleepy-nols/ansible-jellyfin.git
     - sleepy-nols.jellyfin
 ```
 
-## Out of Role Scope
-
-- Initial configuration
-
-You still need to do the initial configuration via the webinterface
-
-
 ## Contributing
 
 Contributions on are welcome, please write meaningfull commit messages :)
