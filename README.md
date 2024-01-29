@@ -1,8 +1,9 @@
-# Ansible Role Jellyfin
-Ansible role to install and configure [Jellyfin](https://jellyfin.org/) on Debian.
+# ansible-jellyfin
+Ansible role to install and configure [Jellyfin](https://jellyfin.org/) on Debian-like systems.
 
 ![ansible-lint](https://github.com/sleepy-nols/ansible-jellyfin/actions/workflows/ansible-lint.yml/badge.svg)
 ![push-galaxy](https://github.com/sleepy-nols/ansible-jellyfin/actions/workflows/ansible-galaxy-push-role.yml/badge.svg)
+![Ansible ](https://img.shields.io/badge/Ansible_Galaxy-sleepy--nols.jellyfin-blue?url=https://galaxy.ansible.com/api/v2/collections/ibm/ibm_zos_core/&query=latest_version.version)
 
 ## Role Variables and Defaults
 
