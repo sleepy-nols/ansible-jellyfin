@@ -1,5 +1,5 @@
 #
-# Ansible managed
+# {{ ansible_managed }}
 #
 
 [Definition]
