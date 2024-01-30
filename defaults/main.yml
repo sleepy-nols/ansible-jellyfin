@@ -1,27 +1,25 @@
 ---
-
+jellyfin_name: "jellyfin"
+jellyfin_user: "{{ jellyfin_name }}"
 jellyfin_skip_apt_key: false
 jellyfin_skip_restart: false
+
 jellyfin_enable_fail2ban: false
 jellyfin_fail2ban_ports:
   - "80"
   - "443"
+jellyfin_fail2ban_maxretry: 3
+jellyfin_fail2ban_bantime: 6000
+jellyfin_fail2ban_findtime: 600
 
-jellyfin_user: "jellyfin"
+jellyfin_cache_dir: "/var/cache/jellyfin"
+jellyfin_log_dir: "/var/log/jellyfin"
+
+jellyfin_web_bin: "/usr/share/jellyfin/web"
+jellyfin_restart_bin: "/usr/lib/jellyfin/restart.sh"
+jellyfin_ffmpeg_bin: "/usr/lib/jellyfin-ffmpeg/ffmpeg"
 
 jellyfin_additional_opts: ""
 
-# Paths
-jellyfin_restart_opt: "--restartpath=/usr/lib/jellyfin/restart.sh"
-jellyfin_ffmpeg_opt: "--ffmpeg=/usr/lib/jellyfin-ffmpeg/ffmpeg"
-jellyfin_web_opt: "--webdir=/usr/share/jellyfin/web"
+jellyfin_malloc_trim_threshold: 131072
 
-# Directories
-jellyfin_cache_dir: "/var/cache/jellyfin"
-jellyfin_log_dir: "/var/log/jellyfin"
-jellyfin_config_dir: "/etc/jellyfin"
-jellyfin_data_dir: "/var/lib/jellyfin"
-
-# optional
-# jellyfin_nowebapp_opt: "--nowebclient"
-# jellyfin_service_opt: "--service"
