@@ -1,9 +1,6 @@
 # .github/workflows/ansible-lint.yml
 name: ansible-lint
 on:
-  push:
-    branches:
-      - main
   pull_request:
     branches:
       - main
