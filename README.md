@@ -19,6 +19,7 @@ jellyfin_skip_restart: false
 ```
 Skip restarting Jellyfin, even on config change.
 
+---
 ### fail2ban
 
 ```yml
@@ -40,6 +41,7 @@ jellyfin_fail2ban_findtime: "600"
 ```
 Configuration of fail2ban parameters. You probably want to tweak these according to your userbase and threatmodel.
 
+---
 ### Jellyfin
 
 ```yml
@@ -73,6 +75,7 @@ jellyfin_nowebapp: bool
 ```
 **Optional:** Run Jellyfin without the web app.
 
+---
 ### Advanced
 
 ```yml
@@ -106,7 +109,7 @@ git clone git@github.com:sleepy-nols/ansible-jellyfin.git
 ---
 ## Contributing
 
-Contributions on are welcome, please write meaningfull commit messages :)
+Contributions on are welcome. :)
 
 ---
 ## License
