@@ -22,4 +22,3 @@ jellyfin_ffmpeg_bin: "/usr/lib/jellyfin-ffmpeg/ffmpeg"
 jellyfin_additional_opts: ""
 
 jellyfin_malloc_trim_threshold: 131072
-
