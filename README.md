@@ -3,7 +3,7 @@ Ansible role to install and configure [Jellyfin](https://jellyfin.org/) on Debia
 
 ![ansible-lint](https://github.com/sleepy-nols/ansible-jellyfin/actions/workflows/ansible-lint.yml/badge.svg)
 ![push-galaxy](https://github.com/sleepy-nols/ansible-jellyfin/actions/workflows/ansible-galaxy-push-role.yml/badge.svg)
-![Ansible ](https://img.shields.io/badge/Ansible_Galaxy-sleepy--nols.jellyfin-blue?url=https://galaxy.ansible.com/api/v2/collections/ibm/ibm_zos_core/&query=latest_version.version)
+![Ansible Galaxy](https://img.shields.io/badge/Ansible_Galaxy-sleepy--nols.jellyfin-blue)
 
 
 ---
