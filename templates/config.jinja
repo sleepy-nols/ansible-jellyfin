@@ -2,10 +2,6 @@
 # {{ ansible_managed }}
 #
 
-#
-# General options
-#
-
 # Program directories
 JELLYFIN_DATA_DIR="{{ jellyfin_data_dir }}"
 JELLYFIN_CONFIG_DIR="{{ jellyfin_config_dir }}"
@@ -13,42 +9,30 @@ JELLYFIN_LOG_DIR="{{ jellyfin_log_dir }}"
 JELLYFIN_CACHE_DIR="{{ jellyfin_cache_dir }}"
 
 # web client path, installed by the jellyfin-web package
-JELLYFIN_WEB_OPT="{{ jellyfin_web_opt }}"
+JELLYFIN_WEB_OPT="--webdir={{ jellyfin_web_bin }}"
 
 # Restart script for in-app server control
-JELLYFIN_RESTART_OPT="{{ jellyfin_restart_opt }}"
+JELLYFIN_RESTART_OPT="--restartpath={{ jellyfin_restart_bin }}"
 
 # ffmpeg binary paths, overriding the system values
-JELLYFIN_FFMPEG_OPT="{{ jellyfin_ffmpeg_opt }}"
+JELLYFIN_FFMPEG_OPT="--ffmpeg={{ jellyfin_ffmpeg_bin }}"
 
 # Disable glibc dynamic heap adjustment
-MALLOC_TRIM_THRESHOLD_=131072
+MALLOC_TRIM_THRESHOLD_={{ jellyfin_malloc_trim_threshold | int }}
 
 # [OPTIONAL] run Jellyfin as a headless service
-{% if jellyfin_service_opt is defined %}
-JELLYFIN_SERVICE_OPT="{{ jellyfin_service_opt }}"
+{% if jellyfin_service is defined %}
+JELLYFIN_SERVICE_OPT="{% if jellyfin_service | bool %}--service{% endif %}"
 {% endif %}
 
 # [OPTIONAL] run Jellyfin without the web app
-{% if jellyfin_nowebapp_opt is defined %}
-JELLYFIN_NOWEBAPP_OPT="{{ jellyfin_nowebapp_opt }}"
+{% if jellyfin_nowebapp is defined %}
+JELLYFIN_NOWEBAPP_OPT="{% if jellyfin_nowebapp | bool %}--nowebclient{% endif %}"
 {% endif %}
 
 # Space to add additional command line options to jellyfin (for help see ~$ jellyfin --help)
 JELLYFIN_ADDITIONAL_OPTS="{{ jellyfin_additional_opts }}"
 
-# [OPTIONAL] run Jellyfin with ASP.NET Server Garbage Collection (uses more RAM and less CPU than Workstation GC)
-# 0 = Workstation
-# 1 = Server
-#COMPlus_gcServer=1
 
-#
-# SysV init/Upstart options
-#
-# Note: These options are ignored by systemd; use /etc/systemd/system/jellyfin.d overrides instead.
-#
+COMPlus_gcServer={{ jellyfin_complus_gcserver | int }}
 
-# Application username
-JELLYFIN_USER="{{ jellyfin_user }}"
-# Full application command
-JELLYFIN_ARGS="$JELLYFIN_WEB_OPT $JELLYFIN_RESTART_OPT $JELLYFIN_FFMPEG_OPT $JELLYFIN_SERVICE_OPT $JELLYFIN_NOWEBAPP_OPT $JELLFIN_ADDITIONAL_OPTS"
