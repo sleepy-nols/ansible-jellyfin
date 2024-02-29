@@ -5,7 +5,7 @@ galaxy_info:
   description: Ansible role to install and configure Jellyfin on Debian-like systems.
   license: GPLv3
   github_branch: main
-  min_ansible_version: 2.14
+  min_ansible_version: "2.14"
   platforms:
     - name: Debian
       versions:
