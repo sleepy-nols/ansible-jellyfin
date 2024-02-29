@@ -3,7 +3,7 @@ Ansible role to install and configure [Jellyfin](https://jellyfin.org/) on Debia
 
 ![ansible-lint](https://github.com/sleepy-nols/ansible-jellyfin/actions/workflows/ansible-lint.yml/badge.svg)
 ![push-galaxy](https://github.com/sleepy-nols/ansible-jellyfin/actions/workflows/ansible-galaxy-push-role.yml/badge.svg)
-![Ansible ](https://img.shields.io/badge/Ansible_Galaxy-sleepy--nols.jellyfin-blue?url=https://galaxy.ansible.com/api/v2/collections/ibm/ibm_zos_core/&query=latest_version.version)
+![Ansible Galaxy](https://img.shields.io/badge/Ansible_Galaxy-sleepy--nols.jellyfin-blue)
 
 
 ---
@@ -19,6 +19,7 @@ jellyfin_skip_restart: false
 ```
 Skip restarting Jellyfin, even on config change.
 
+---
 ### fail2ban
 
 ```yml
@@ -40,6 +41,7 @@ jellyfin_fail2ban_findtime: "600"
 ```
 Configuration of fail2ban parameters. You probably want to tweak these according to your userbase and threatmodel.
 
+---
 ### Jellyfin
 
 ```yml
@@ -73,6 +75,7 @@ jellyfin_nowebapp: bool
 ```
 **Optional:** Run Jellyfin without the web app.
 
+---
 ### Advanced
 
 ```yml
@@ -106,7 +109,7 @@ git clone git@github.com:sleepy-nols/ansible-jellyfin.git
 ---
 ## Contributing
 
-Contributions on are welcome, please write meaningfull commit messages :)
+Contributions on are welcome. :)
 
 ---
 ## License
