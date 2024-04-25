@@ -4,7 +4,7 @@
     src: templates/config.jinja
     dest: /etc/default/jellyfin
     force: true
-    owner: "{{ jellyfin_user }}"
-    group: "{{ jellyfin_user }}"
+    owner: "{{ jellyfin_unix_user }}"
+    group: "{{ jellyfin_unix_group }}"
     mode: "0744"
   notify: Restart Jellyfin
