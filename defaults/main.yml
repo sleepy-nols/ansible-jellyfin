@@ -6,6 +6,23 @@ jellyfin_user: "{{ jellyfin_name }}"
 jellyfin_skip_apt_key: false
 jellyfin_skip_restart: false
 
+jellyfin_package_dependencies:
+  - gnupg
+  - libicu72
+  - python3-debian
+
+jellyfin_ansible_deb_architectures:
+  "armv6l": "armhf"
+  "armv7l": "armhf"
+  "aarch64": "arm64"
+  "x86_64": "amd64"
+  # not supported by jellyfin
+  # "i386": "i386"
+# convert new architecture naming to old architecture naming
+jellyfin_deb_architecture: "{{ jellyfin_ansible_deb_architectures[ansible_architecture] }}"
+
+jellyfin_apt_signing_key_url: "https://repo.jellyfin.org/jellyfin_team.gpg.key"
+
 jellyfin_enable_fail2ban: false
 jellyfin_fail2ban_ports:
   - "80"
