@@ -31,6 +31,8 @@ jellyfin_fail2ban_maxretry: 3
 jellyfin_fail2ban_bantime: 6000
 jellyfin_fail2ban_findtime: 600
 
+jellyfin_data_dir: "/var/lib/jellyfin"
+jellyfin_config_dir: "/etc/jellyfin"
 jellyfin_cache_dir: "/var/cache/jellyfin"
 jellyfin_log_dir: "/var/log/jellyfin"
 
