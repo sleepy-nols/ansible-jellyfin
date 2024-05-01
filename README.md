@@ -6,6 +6,15 @@ Ansible role to install and configure [Jellyfin](https://jellyfin.org/) on Debia
 ![push-galaxy](https://github.com/sleepy-nols/ansible-jellyfin/actions/workflows/ansible-galaxy-push-role.yml/badge.svg)
 ![Ansible Galaxy](https://img.shields.io/badge/Ansible_Galaxy-sleepy--nols.jellyfin-blue)
 
+The default deployment without any variables changed is not a vanilla deployment as several quality of life improvements are made.
+To deploy just a bare vanilla instance, set `jellyfin_vanilla_mode` to `true`. If run in non vanilla-mode before, setting it afterwards is not a good idea as not everything will get unset.
+
+**Features:**
+- fully configurable config files (ansible management of settings normally tweaked in webUI)
+- fail2ban support
+- logrotate support
+- deployment of webserver(reverse-proxy) (currently only nginx)
+- configuration of ssl with webserver
 
 ---
 ## Role Variables and Defaults
