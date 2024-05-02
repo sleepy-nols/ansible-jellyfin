@@ -1,10 +1,21 @@
 ---
-- name: Configure Jellyfin
+- name: Template jellyfin main config
   ansible.builtin.template:
-    src: templates/config.jinja
-    dest: /etc/default/jellyfin
-    force: true
-    owner: "{{ jellyfin_unix_user }}"
-    group: "{{ jellyfin_unix_group }}"
-    mode: "0744"
-  notify: Restart Jellyfin
+    src: "templates/jellyfin_config.j2"
+    dest: "/etc/default/jellyfin"
+    owner: "root"
+    group: "root"
+    mode: "{{ jellyfin_permission_etc_file }}"
+  notify:
+    - restart_jellyfin
+
+- name: Configure systemd service override
+  template:
+    src: "templates/etc/systemd/system/jellyfin.service.d/ansible_managed.conf.j2"
+    dest: "/etc/systemd/system/jellyfin.service.d/ansible_managed.conf"
+    owner: "root"
+    group: "root"
+    mode: "{{ jellyfin_permission_etc_file }}"
+  notify:
+    - restart_jellyfin
+    - systemd_daemon_reload
