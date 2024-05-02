@@ -17,13 +17,7 @@
 
 - name: Configure fail2ban
   ansible.builtin.include_tasks: fail2ban.yml
-  when: jellyfin_enable_fail2ban | bool
-
-- name: Enable and start jellyfin
-  ansible.builtin.systemd:
-    name: "jellyfin.service"
-    state: started
-    enabled: true
+  when: jellyfin_fail2ban_enabled | bool
 
 - name: Configure webserver
   ansible.builtin.include_tasks: webserver/main.yml
@@ -31,3 +25,9 @@
 - name: Configure certs for the webserver
   ansible.builtin.include_tasks: certs/main.yml
   when: jellyfin_ssl_enabled | bool
+
+- name: Enable and start jellyfin
+  ansible.builtin.systemd:
+    name: "jellyfin.service"
+    state: started
+    enabled: true
