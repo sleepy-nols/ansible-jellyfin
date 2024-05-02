@@ -2,9 +2,18 @@
 # work in progess, big rebase on the way ;)
 Ansible role to install and configure [Jellyfin](https://jellyfin.org/) on Debian-like systems.
 
-![ansible-lint](https://github.com/sleepy-nols/ansible-jellyfin/actions/workflows/ansible-lint.yml/badge.svg)
-![push-galaxy](https://github.com/sleepy-nols/ansible-jellyfin/actions/workflows/ansible-galaxy-push-role.yml/badge.svg)
-![Ansible Galaxy](https://img.shields.io/badge/Ansible_Galaxy-sleepy--nols.jellyfin-blue)
+<a href="https://github.com/sleepy-nols/ansible-jellyfin/actions/workflows/ansible-lint.yml">
+<img alt="ansible-lint" src="https://github.com/sleepy-nols/ansible-jellyfin/actions/workflows/ansible-lint.yml/badge.svg"/>
+</a>
+
+<a href="https://github.com/sleepy-nols/ansible-jellyfin/actions/workflows/ansible-galaxy-push-role.yml">
+<img alt="push-galaxy" src="https://github.com/sleepy-nols/ansible-jellyfin/actions/workflows/ansible-galaxy-push-role.yml/badge.svg"/>
+</a>
+
+<a href="https://galaxy.ansible.com/ui/standalone/roles/sleepy-nols/jellyfin">
+<img alt="Ansible Galaxy" src="https://img.shields.io/badge/Ansible_Galaxy-sleepy--nols.jellyfin-blue"/>
+</a>
+<br><br>
 
 The default deployment without any variables changed is not a vanilla deployment as several quality of life improvements are made.
 To deploy just a bare vanilla instance, set `jellyfin_vanilla_mode` to `true`. If run in non vanilla-mode before, setting it afterwards is not a good idea as not everything will get unset.
