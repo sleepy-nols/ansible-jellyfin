@@ -1,13 +1,34 @@
 ---
-- name: Restart Jellyfin
+- name: Restart jellyfin
   ansible.builtin.systemd:
     name: jellyfin.service
     state: restarted
-    enabled: true
+  listen: restart_jellyfin
   when: not (jellyfin_skip_restart | bool)
 
 - name: Restart fail2ban
   ansible.builtin.systemd:
     name: fail2ban.service
     state: restarted
-    enabled: true
+  listen: Restart fail2ban
+
+- name: Reload nginx
+  ansible.builtin.systemd:
+    name: nginx.service
+    state: restarted
+  listen: reload_nginx
+
+- name: Systemd daemon-reload
+  ansible.builtin.systemd:
+    daemon_reload: true
+  listen: systemd_daemon_reload
+
+- name: Stop and disable all vanilla services
+  ansible.builtin.systemd:
+    name: "{{ item }}"
+    state: stopped
+    enabled: false
+  loop:
+    - fail2ban
+    - nginx
+  listen: stop_disable_non_vanilla
