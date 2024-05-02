@@ -1,4 +1,3 @@
-# .github/workflows/ansible-lint.yml
 name: ansible-lint
 on:
   pull_request:
