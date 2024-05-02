@@ -1,0 +1,10 @@
+---
+- name: Make snakeoil certs
+  command: make-ssl-cert generate-default-snakeoil
+  changed_when: false
+
+- name: Add webserver user to ssl-cert group
+  user:
+    name: www-data
+    groups: ssl-cert
+    append: true

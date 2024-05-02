@@ -1,0 +1,16 @@
+---
+- name: Configure webserver
+  block:
+    - name: Configure nginx webserver
+      ansible.builtin.include_tasks: webserver/nginx.yml
+      when: jellyfin_webserver.type == 'nginx'
+
+    # apache is not supported yet
+    - name: Configure apache2 webserver
+      ansible.builtin.include_tasks: webserver/apache2.yml
+      when: jellyfin_webserver.type == 'apache' or jellyfin_webserver.type == 'apache2'
+  when: jellyfin_webserver.enabled | bool
+
+- name: Disable webserver
+  ansible.builtin.include_tasks: webserver/disable.yml
+  when: not jellyfin_webserver.enabled | bool
