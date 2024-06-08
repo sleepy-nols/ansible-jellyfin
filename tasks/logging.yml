@@ -1,32 +1,31 @@
 ---
 - name: Install logrotate
-  apt:
+  ansible.builtin.apt:
     name: logrotate
     state: present
   when: jellyfin_logrotate.enabled | bool
 
-
 - name: Configure logrotate with jellyfin
-  template:
-    src: "templates/etc/logrotate.d/jellyfin.j2"
-    dest: "/etc/logrotate.d/jellyfin"
+  ansible.builtin.template:
+    src: templates/etc/logrotate.d/jellyfin.j2
+    dest: /etc/logrotate.d/jellyfin
     owner: root
     group: root
     mode: "{{ jellyfin_permission_etc_file }}"
   when: jellyfin_logrotate.enabled | bool
 
 - name: Remove jellyfin logrotate config
-  file:
-    path: "/etc/logrotate.d/jellyfin"
+  ansible.builtin.file:
+    path: /etc/logrotate.d/jellyfin
     state: absent
   when: not jellyfin_logrotate.enabled | bool
 
 - name: Configure jellyfin logging
-  template:
-    src: "templates/etc/jellyfin/logging.json.j2"
+  ansible.builtin.template:
+    src: templates/etc/jellyfin/logging.json.j2
     dest: "{{ jellyfin_config_dir }}/logging.json"
-    owner: "root"
-    group: "root"
+    owner: root
+    group: root
     mode: "{{ jellyfin_permission_etc_file }}"
   notify:
     - restart_jellyfin

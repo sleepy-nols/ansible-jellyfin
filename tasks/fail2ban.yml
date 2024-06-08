@@ -2,8 +2,8 @@
 - name: Install fail2ban and dependencies
   ansible.builtin.apt:
     pkg:
-      - "fail2ban"
-      - "iptables"
+      - fail2ban
+      - iptables
 
 - name: Enable and start fail2ban
   ansible.builtin.systemd:
@@ -13,16 +13,16 @@
 
 - name: Create fail2ban jail
   ansible.builtin.template:
-    src: "templates/fail2ban_jail.j2"
-    dest: "/etc/fail2ban/jail.d/jellyfin.local"
+    src: templates/fail2ban_jail.j2
+    dest: /etc/fail2ban/jail.d/jellyfin.local
     mode: "0744"
   notify: Restart fail2ban
   diff: true
 
 - name: Create fail2ban filter
   ansible.builtin.template:
-    src: "templates/fail2ban_filter.j2"
-    dest: "/etc/fail2ban/filter.d/jellyfin.conf"
+    src: templates/fail2ban_filter.j2
+    dest: /etc/fail2ban/filter.d/jellyfin.conf
     mode: "0744"
   notify: Restart fail2ban
   diff: true

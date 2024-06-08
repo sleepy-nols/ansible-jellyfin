@@ -1,3 +1,4 @@
+---
 name: ansible-lint
 on:
   pull_request:

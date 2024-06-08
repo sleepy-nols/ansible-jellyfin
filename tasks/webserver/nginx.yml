@@ -1,46 +1,46 @@
 ---
 - name: Install nginx package
-  apt:
+  ansible.builtin.apt:
     name: nginx
     state: present
 
 - name: Start and enable nginx
   ansible.builtin.systemd:
-    name: "nginx.service"
+    name: nginx.service
     state: started
     enabled: true
 
 - name: Remove default nginx site
-  file:
-    path: "/etc/nginx/{{ item }}"
+  ansible.builtin.file:
+    path: /etc/nginx/{{ item }}
     state: absent
   loop:
-    - "sites-available/default"
-    - "sites-enabled/default"
+    - sites-available/default
+    - sites-enabled/default
 
 - name: Configure nginx
-  template:
-    src: "templates/etc/nginx/sites-available/jellyfin.j2"
-    dest: "/etc/nginx/sites-available/jellyfin"
-    owner: "root"
-    group: "root"
+  ansible.builtin.template:
+    src: templates/etc/nginx/sites-available/jellyfin.j2
+    dest: /etc/nginx/sites-available/jellyfin
+    owner: root
+    group: root
     mode: "{{ jellyfin_permission_etc_file }}"
   notify:
     - reload_nginx
 
 - name: Test nginx config
-  command: nginx -t
+  ansible.builtin.command: nginx -t
   register: jellyfin_reg_nginx_test
   changed_when: false
   failed_when: false
 
 - name: Assert that nginx test is OK
-  assert:
+  ansible.builtin.assert:
     that: jellyfin_reg_nginx_test.stderr == jellyfin_nginx_good_test_result
     msg: "Nginx check was not sucessfull: \n{{ jellyfin_reg_nginx_test.stderr_lines }}"
 
 - name: Symlink nginx jellyfin site to sites-enabled
-  file:
-    src: "/etc/nginx/sites-available/jellyfin"
-    dest: "/etc/nginx/sites-enabled/jellyfin"
+  ansible.builtin.file:
+    src: /etc/nginx/sites-available/jellyfin
+    dest: /etc/nginx/sites-enabled/jellyfin
     state: link

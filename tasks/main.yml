@@ -24,7 +24,7 @@
 
 - name: Enable and start jellyfin
   ansible.builtin.systemd:
-    name: "jellyfin.service"
+    name: jellyfin.service
     state: started
     enabled: true
   changed_when: false

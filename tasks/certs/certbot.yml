@@ -1,6 +1,5 @@
 ---
 - name: Install certbot package
-  apt:
+  ansible.builtin.apt:
     name: certbot
     state: present
-

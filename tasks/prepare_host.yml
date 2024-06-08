@@ -5,16 +5,16 @@
     state: present
 
 - name: Create Jellyfin unix group
-  group:
+  ansible.builtin.group:
     name: "{{ jellyfin_unix_group }}"
     state: present
 
 - name: Create Jellyfin unix user
-  user:
+  ansible.builtin.user:
     name: "{{ jellyfin_unix_user }}"
     group: "{{ jellyfin_unix_group }}"
     state: present
-    shell: "/bin/false"
+    shell: /bin/false
 
 - name: Create dirs owned by Jellyfin user
   ansible.builtin.file:
@@ -32,6 +32,6 @@
     path:
       - "{{ jellyfin_config_dir }}"
     state: directory
-    owner: "root"
-    group: "root"
+    owner: root
+    group: root
     mode: "0755"
