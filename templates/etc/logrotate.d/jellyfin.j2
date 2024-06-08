@@ -11,5 +11,11 @@
   copytruncate
   missingok
   notifempty
-  create 0740 "{{ jellyfin_unix_user }}" "{{ jellyfin_unix_group }}"
+  create 0740 {{ jellyfin_unix_user }} {{ jellyfin_unix_group }}
+}
+
+{{ jellyfin_log_dir }}/FFmpeg.*.log {
+  rotate 0
+  weekly
+  missingok
 }

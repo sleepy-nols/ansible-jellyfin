@@ -22,8 +22,10 @@
                 "path": "%JELLYFIN_LOG_DIR%//{{ jellyfin_log_file_name }}",
                 "rollingInterval": "{{ jellyfin_log_rolling_interval }}",
                 "retainedFileCountLimit": {{ jellyfin_log_retained_file_count_limit }},
-                "rollOnFileSizeLimit": {{ jellyfin_log_roll_on_file_size_limit | bool }},
+                "rollOnFileSizeLimit": {{ jellyfin_log_roll_on_file_size_limit | bool | lower }},
+{% if jellyfin_log_file_size_limit_bytes != '' %}
                 "fileSizeLimitBytes": {{ jellyfin_log_file_size_limit_bytes }},
+{% endif %}
                 "outputTemplate": "{{ jellyfin_log_output_template }}"
               }
             }

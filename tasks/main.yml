@@ -31,3 +31,4 @@
     name: "jellyfin.service"
     state: started
     enabled: true
+  changed_when: false
