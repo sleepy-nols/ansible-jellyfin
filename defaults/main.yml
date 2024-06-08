@@ -8,7 +8,7 @@ jellyfin_vanilla_mode: false
 
 # --- config files ---
 # TODO: if domain empty, unset in templating
-jellyfin_domain: ""
+jellyfin_domain: "jellyfin.foo.bar"
 jellyfin_instance_name: "jellyfin"
 
 jellyfin_package_dependencies:
@@ -37,7 +37,7 @@ jellyfin_apt_signing_key_uri: "https://repo.jellyfin.org/jellyfin_team.gpg.key"
 
 
 # --- permissions ---
-jellyfin_permission_etc_file: "0744"
+jellyfin_permission_etc_file: "0644"
 jellyfin_permission_etc_dir: "0755"
 
 
@@ -54,21 +54,22 @@ jellyfin_fail2ban_findtime: 900 # 15 min
 
 
 # --- logging ---
-jellyfin_log_level: "Information" # Verbose, Debug, Information, Warning, Error, Fatal
+jellyfin_log_level: "Warning" # Verbose, Debug, Information, Warning, Error, Fatal
 jellyfin_log_level_override:
   "Microsoft": "Warning"
   "System": "Warning"
 
 jellyfin_log_file_name: "jellyfin.log"
-jellyfin_log_rolling_interval: "Day" # Infinite, Year, Month, Day, Hour, Minute
-jellyfin_log_retained_file_count_limit: 3
-jellyfin_log_roll_on_file_size_limit: true
-jellyfin_log_file_size_limit_bytes: 100000000
+jellyfin_log_rolling_interval: "Infinite" # Infinite, Year, Month, Day, Hour, Minute
+jellyfin_log_retained_file_count_limit: "null"
+jellyfin_log_roll_on_file_size_limit: false
+jellyfin_log_file_size_limit_bytes: ""
 jellyfin_log_output_template: "[{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz}] [{Level:u3}] [{ThreadId}] {SourceContext}: {Message}{NewLine}{Exception}"
 jellyfin_console_log_output_template: "[{Timestamp:HH:mm:ss}] [{Level:u3}] [{ThreadId}] {SourceContext}: {Message:lj}{NewLine}{Exception}"
+
 # use logrotate instead of native jellyfin serilog to manage logs
 jellyfin_logrotate:
-  enabled: false
+  enabled: true
   rotate: 7
   frequency: "daily"
   compress: true
