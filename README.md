@@ -1,5 +1,4 @@
 # ansible-jellyfin
-# work in progess, big rebase on the way ;)
 Ansible role to install and configure [Jellyfin](https://jellyfin.org/) on Debian-like systems.
 
 ![ansible-lint](https://github.com/sleepy-nols/ansible-jellyfin/actions/workflows/ansible-lint.yml/badge.svg)
