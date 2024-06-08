@@ -20,7 +20,7 @@
 
 - name: Configure certs for the webserver
   ansible.builtin.include_tasks: certs/main.yml
-  when: jellyfin_ssl_enabled | bool
+  when: jellyfin_ssl_enabled | bool and jellyfin_webserver | bool
 
 - name: Enable and start jellyfin
   ansible.builtin.systemd:
