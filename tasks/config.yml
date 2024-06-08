@@ -1,7 +1,7 @@
 ---
 - name: Template jellyfin main config
   ansible.builtin.template:
-    src: "templates/jellyfin_config.j2"
+    src: "templates/etc/default/jellyfin.j2"
     dest: "/etc/default/jellyfin"
     owner: "root"
     group: "root"
