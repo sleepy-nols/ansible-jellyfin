@@ -1,24 +1,93 @@
 ---
-jellyfin_name: "jellyfin"
-jellyfin_user: "{{ jellyfin_name }}"
-jellyfin_skip_apt_key: false
+jellyfin_name: jellyfin
+jellyfin_unix_user: "{{ jellyfin_name }}"
+jellyfin_unix_group: "{{ jellyfin_name }}"
 jellyfin_skip_restart: false
 
-jellyfin_enable_fail2ban: false
+# --- config files ---
+# TODO: if domain empty, unset in templating
+jellyfin_domain: jellyfin.foo.bar
+jellyfin_instance_name: jellyfin
+
+jellyfin_package_dependencies:
+  - gnupg
+  - libicu72
+  - python3-debian # deb822_repository module
+  - ssl-cert # snakeoil certs
+
+# convert new architecture naming to old architecture naming
+jellyfin_deb_architecture: "{{ jellyfin_ansible_deb_architectures[ansible_architecture] }}"
+
+# --- paths/urls---
+jellyfin_data_dir: /var/lib/jellyfin
+jellyfin_config_dir: /etc/jellyfin
+jellyfin_cache_dir: /var/cache/jellyfin
+jellyfin_log_dir: /var/log/jellyfin
+
+jellyfin_web_bin: /usr/share/jellyfin/web
+jellyfin_restart_bin: /usr/lib/jellyfin/restart.sh
+jellyfin_ffmpeg_bin: /usr/lib/jellyfin-ffmpeg/ffmpeg
+
+jellyfin_log_file_path: "{{ jellyfin_log_dir }}/{{ jellyfin_log_file_name }}"
+
+jellyfin_apt_signing_key_uri: https://repo.jellyfin.org/jellyfin_team.gpg.key
+
+# --- permissions ---
+jellyfin_permission_etc_file: "0644"
+jellyfin_permission_etc_dir: "0755"
+
+# --- fail2ban ---
+jellyfin_fail2ban_enabled: false
 jellyfin_fail2ban_ports:
+  - "8096"
+  - "8920"
   - "80"
   - "443"
-jellyfin_fail2ban_maxretry: 3
-jellyfin_fail2ban_bantime: 6000
-jellyfin_fail2ban_findtime: 600
+jellyfin_fail2ban_maxretry: 10
+jellyfin_fail2ban_bantime: 1800 # 30 min
+jellyfin_fail2ban_findtime: 900 # 15 min
 
-jellyfin_cache_dir: "/var/cache/jellyfin"
-jellyfin_log_dir: "/var/log/jellyfin"
+# --- logging ---
+jellyfin_log_level: Warning # Verbose, Debug, Information, Warning, Error, Fatal
+jellyfin_log_level_override:
+  Microsoft: Warning
+  System: Warning
 
-jellyfin_web_bin: "/usr/share/jellyfin/web"
-jellyfin_restart_bin: "/usr/lib/jellyfin/restart.sh"
-jellyfin_ffmpeg_bin: "/usr/lib/jellyfin-ffmpeg/ffmpeg"
+jellyfin_log_file_name: jellyfin.log
+jellyfin_log_rolling_interval: Infinite # Infinite, Year, Month, Day, Hour, Minute
+jellyfin_log_retained_file_count_limit: "null"
+jellyfin_log_roll_on_file_size_limit: false
+jellyfin_log_file_size_limit_bytes: ""
+jellyfin_log_output_template: "[{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz}] [{Level:u3}] [{ThreadId}] {SourceContext}: {Message}{NewLine}{Exception}"
+jellyfin_console_log_output_template: "[{Timestamp:HH:mm:ss}] [{Level:u3}] [{ThreadId}] {SourceContext}: {Message:lj}{NewLine}{Exception}"
 
+# use logrotate instead of native jellyfin serilog to manage logs
+jellyfin_logrotate:
+  enabled: true
+  rotate: 7
+  frequency: daily
+  compress: true
+  shred: true
+
+# --- webserver/proxy ---
+# TODO: when webserver enabled, bind jellyfin only to 127.0.0.1 to not expose outside
+jellyfin_webserver:
+  enabled: false
+  type: nginx # nginx, apache not yet supported
+  http_port: 80
+  https_port: 443
+  censor_logs: true
+  client_max_body_size: 20M
+  disable_insecure_tls_versions: true
+
+jellyfin_ssl_enabled: true
+jellyfin_ssl_mode: certbot
+jellyfin_ssl_snakeoil_certs: false
+jellyfin_ssl_cert_path: /etc/ssl/certs/ssl-cert-snakeoil.pem
+jellyfin_ssl_key_path: /etc/ssl/private/ssl-cert-snakeoil.key
+
+# --- jellyfin runtime args ---
 jellyfin_additional_opts: ""
 
 jellyfin_malloc_trim_threshold: 131072
+jellyfin_complus_gcserver: ""

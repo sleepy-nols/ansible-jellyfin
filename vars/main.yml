@@ -1,0 +1,10 @@
+---
+jellyfin_ansible_deb_architectures:
+  armv6l: armhf
+  armv7l: armhf
+  aarch64: arm64
+  x86_64: amd64
+  # not supported by jellyfin
+  # "i386": "i386"
+
+jellyfin_nginx_good_test_result: "nginx: the configuration file /etc/nginx/nginx.conf syntax is ok\nnginx: configuration file /etc/nginx/nginx.conf test is successful"

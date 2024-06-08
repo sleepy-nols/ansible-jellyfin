@@ -20,19 +20,20 @@ JELLYFIN_FFMPEG_OPT="--ffmpeg={{ jellyfin_ffmpeg_bin }}"
 # Disable glibc dynamic heap adjustment
 MALLOC_TRIM_THRESHOLD_={{ jellyfin_malloc_trim_threshold | int }}
 
-# [OPTIONAL] run Jellyfin as a headless service
 {% if jellyfin_service is defined %}
+# [OPTIONAL] run Jellyfin as a headless service
 JELLYFIN_SERVICE_OPT="{% if jellyfin_service | bool %}--service{% endif %}"
 {% endif %}
 
-# [OPTIONAL] run Jellyfin without the web app
 {% if jellyfin_nowebapp is defined %}
+# [OPTIONAL] run Jellyfin without the web app
 JELLYFIN_NOWEBAPP_OPT="{% if jellyfin_nowebapp | bool %}--nowebclient{% endif %}"
 {% endif %}
 
 # Space to add additional command line options to jellyfin (for help see ~$ jellyfin --help)
 JELLYFIN_ADDITIONAL_OPTS="{{ jellyfin_additional_opts }}"
 
-
+{% if jellyfin_complus_gcserver is defined and jellyfin_complus_gcserver != "" %}
 COMPlus_gcServer={{ jellyfin_complus_gcserver | int }}
+{% endif %}
 

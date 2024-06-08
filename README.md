@@ -1,10 +1,27 @@
 # ansible-jellyfin
 Ansible role to install and configure [Jellyfin](https://jellyfin.org/) on Debian-like systems.
 
-![ansible-lint](https://github.com/sleepy-nols/ansible-jellyfin/actions/workflows/ansible-lint.yml/badge.svg)
-![push-galaxy](https://github.com/sleepy-nols/ansible-jellyfin/actions/workflows/ansible-galaxy-push-role.yml/badge.svg)
-![Ansible Galaxy](https://img.shields.io/badge/Ansible_Galaxy-sleepy--nols.jellyfin-blue)
+<a href="https://github.com/sleepy-nols/ansible-jellyfin/actions/workflows/ansible-lint.yml">
+<img alt="ansible-lint" src="https://github.com/sleepy-nols/ansible-jellyfin/actions/workflows/ansible-lint.yml/badge.svg"/>
+</a>
 
+<a href="https://github.com/sleepy-nols/ansible-jellyfin/actions/workflows/ansible-galaxy-push-role.yml">
+<img alt="push-galaxy" src="https://github.com/sleepy-nols/ansible-jellyfin/actions/workflows/ansible-galaxy-push-role.yml/badge.svg"/>
+</a>
+
+<a href="https://galaxy.ansible.com/ui/standalone/roles/sleepy-nols/jellyfin">
+<img alt="Ansible Galaxy" src="https://img.shields.io/badge/Ansible_Galaxy-sleepy--nols.jellyfin-blue"/>
+</a>
+<br><br>
+
+The default deployment without any variables changed is not a vanilla deployment as several quality of life improvements are made.
+
+**Features:**
+- fully configurable config files (ansible management of settings normally tweaked in webUI)
+- fail2ban support
+- logrotate support
+- deployment of webserver(reverse-proxy) (currently only nginx)
+- configuration of ssl with webserver
 
 ---
 ## Role Variables and Defaults
