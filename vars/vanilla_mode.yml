@@ -1,7 +1,0 @@
----
-# unset all variables that lead to a non default configuration
-
-jellyfin_logrotate.enabled: false
-jellyfin_fail2ban_enabled: false
-jellyfin_webserver.enabled: false
-jellyfin_ssl_enabled: false

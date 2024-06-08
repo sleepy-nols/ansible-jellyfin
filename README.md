@@ -16,7 +16,6 @@ Ansible role to install and configure [Jellyfin](https://jellyfin.org/) on Debia
 <br><br>
 
 The default deployment without any variables changed is not a vanilla deployment as several quality of life improvements are made.
-To deploy just a bare vanilla instance, set `jellyfin_vanilla_mode` to `true`. If run in non vanilla-mode before, setting it afterwards is not a good idea as not everything will get unset.
 
 **Features:**
 - fully configurable config files (ansible management of settings normally tweaked in webUI)

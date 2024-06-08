@@ -22,13 +22,3 @@
   ansible.builtin.systemd:
     daemon_reload: true
   listen: systemd_daemon_reload
-
-- name: Stop and disable all vanilla services
-  ansible.builtin.systemd:
-    name: "{{ item }}"
-    state: stopped
-    enabled: false
-  loop:
-    - fail2ban
-    - nginx
-  listen: stop_disable_non_vanilla

@@ -1,8 +1,4 @@
 ---
-- name: Vanilla mode
-  ansible.builtin.include_tasks: vanilla_mode.yml
-  when: jellyfin_vanilla_mode | bool
-
 - name: Prepare host
   ansible.builtin.include_tasks: prepare_host.yml
 
