@@ -1,0 +1,21 @@
+#jinja2:trim_blocks:False
+#
+# {{ ansible_managed }}
+#
+
+{{ jellyfin_log_file_path }} {
+  rotate {{ jellyfin_logrotate.rotate }}
+  {{ jellyfin_logrotate.frequency }}
+  {% if jellyfin_logrotate.compress | bool %}compress{% endif %}
+  {% if jellyfin_logrotate.shred | bool %}shred{% endif %}
+  copytruncate
+  missingok
+  notifempty
+  create 0740 {{ jellyfin_unix_user }} {{ jellyfin_unix_group }}
+}
+
+{{ jellyfin_log_dir }}/FFmpeg.*.log {
+  rotate 0
+  weekly
+  missingok
+}

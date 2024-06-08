@@ -1,0 +1,17 @@
+---
+- name: Add Jellyfin repo
+  ansible.builtin.deb822_repository:
+    name: jellyfin
+    types: deb
+    uris: https://repo.jellyfin.org/{{ ansible_distribution | lower }}
+    suites:
+      - "{{ ansible_distribution_release | lower }}"
+    components: main
+    architectures: "{{ jellyfin_deb_architecture }}"
+    signed_by: "{{ jellyfin_apt_signing_key_uri }}"
+
+- name: Install Jellyfin
+  ansible.builtin.apt:
+    pkg: jellyfin
+    update_cache: true
+  notify: restart_jellyfin

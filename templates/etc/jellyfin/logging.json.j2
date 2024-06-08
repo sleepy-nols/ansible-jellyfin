@@ -1,0 +1,41 @@
+#jinja2: trim_blocks: False
+{
+  "Serilog": {
+    "MinimumLevel": {
+      "Default": "{{ jellyfin_log_level }}",
+      "Override": {{ jellyfin_log_level_override | to_json }}
+    },
+    "WriteTo": [
+      {
+        "Name": "Console",
+        "Args": {
+          "outputTemplate": "{{ jellyfin_console_log_output_template }}"
+        }
+      },
+      {
+        "Name": "Async",
+        "Args": {
+          "configure": [
+            {
+              "Name": "File",
+              "Args": {
+                "path": "%JELLYFIN_LOG_DIR%//{{ jellyfin_log_file_name }}",
+                "rollingInterval": "{{ jellyfin_log_rolling_interval }}",
+                "retainedFileCountLimit": {{ jellyfin_log_retained_file_count_limit }},
+                "rollOnFileSizeLimit": {{ jellyfin_log_roll_on_file_size_limit | bool | lower }},
+{% if jellyfin_log_file_size_limit_bytes != '' %}
+                "fileSizeLimitBytes": {{ jellyfin_log_file_size_limit_bytes }},
+{% endif %}
+                "outputTemplate": "{{ jellyfin_log_output_template }}"
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "Enrich": [
+      "FromLogContext",
+      "WithThreadId"
+    ]
+  }
+}
