@@ -26,7 +26,6 @@ jellyfin_cache_dir: /var/cache/jellyfin
 jellyfin_log_dir: /var/log/jellyfin
 
 jellyfin_web_bin: /usr/share/jellyfin/web
-jellyfin_restart_bin: /usr/lib/jellyfin/restart.sh
 jellyfin_ffmpeg_bin: /usr/lib/jellyfin-ffmpeg/ffmpeg
 
 jellyfin_log_file_path: "{{ jellyfin_log_dir }}/{{ jellyfin_log_file_name }}"

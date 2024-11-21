@@ -70,7 +70,6 @@ jellyfin_data_dir: "/var/lib/jellyfin"
 Jellyfin directories.
 
 ```yml
-jellyfin_restart_bin: "/usr/lib/jellyfin/restart.sh"
 jellyfin_ffmpeg_bin: "/usr/lib/jellyfin-ffmpeg/ffmpeg"
 jellyfin_web_bin: "/usr/share/jellyfin/web"
 ```

@@ -11,9 +11,6 @@ JELLYFIN_CACHE_DIR="{{ jellyfin_cache_dir }}"
 # web client path, installed by the jellyfin-web package
 JELLYFIN_WEB_OPT="--webdir={{ jellyfin_web_bin }}"
 
-# Restart script for in-app server control
-JELLYFIN_RESTART_OPT="--restartpath={{ jellyfin_restart_bin }}"
-
 # ffmpeg binary paths, overriding the system values
 JELLYFIN_FFMPEG_OPT="--ffmpeg={{ jellyfin_ffmpeg_bin }}"
 
