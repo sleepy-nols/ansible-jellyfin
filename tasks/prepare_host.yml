@@ -27,7 +27,6 @@
     - "{{ jellyfin_cache_dir }}"
     - "{{ jellyfin_data_dir }}"
     - "{{ jellyfin_log_dir }}"
-    
 
 - name: Create dirs owned by root
   ansible.builtin.file:
