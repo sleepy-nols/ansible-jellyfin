@@ -18,20 +18,13 @@
 
 - name: Create dirs owned by Jellyfin user
   ansible.builtin.file:
-    path:
-      - "{{ jellyfin_cache_dir }}"
-      - "{{ jellyfin_data_dir }}"
-      - "{{ jellyfin_log_dir }}"
+    path: "{{ item }}"
     state: directory
     owner: "{{ jellyfin_unix_user }}"
     group: "{{ jellyfin_unix_group }}"
     mode: "0755"
-
-- name: Create dirs owned by root
-  ansible.builtin.file:
-    path:
-      - "{{ jellyfin_config_dir }}"
-    state: directory
-    owner: root
-    group: root
-    mode: "0755"
+  loop:
+    - "{{ jellyfin_cache_dir }}"
+    - "{{ jellyfin_data_dir }}"
+    - "{{ jellyfin_log_dir }}"
+    - "{{ jellyfin_config_dir }}"
