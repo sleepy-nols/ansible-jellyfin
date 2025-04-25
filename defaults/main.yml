@@ -2,6 +2,7 @@
 jellyfin_name: jellyfin
 jellyfin_unix_user: "{{ jellyfin_name }}"
 jellyfin_unix_group: "{{ jellyfin_name }}"
+jellyfin_additional_unix_groups: []
 jellyfin_skip_restart: false
 
 # --- config files ---

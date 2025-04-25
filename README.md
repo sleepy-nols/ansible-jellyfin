@@ -105,6 +105,14 @@ jellyfin_malloc_trim_threshold: 131072
 ```
 Disable glibc dynamic heap adjustment.
 
+```yml
+jellyfin_additional_unix_groups:
+  - render
+```
+**Optional:** Additional Unix groups to add to the Jellyfin user. This is useful for hardware transcoding.
+
+```yml
+
 ---
 ## Installing
 
