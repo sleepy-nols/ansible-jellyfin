@@ -13,6 +13,7 @@
   ansible.builtin.user:
     name: "{{ jellyfin_unix_user }}"
     group: "{{ jellyfin_unix_group }}"
+    groups: "{{ jellyfin_additional_unix_groups | list + ['{{ jellyfin_unix_group }}'] }}"
     state: present
     shell: /bin/false
 
