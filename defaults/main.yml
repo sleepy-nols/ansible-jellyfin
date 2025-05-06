@@ -14,7 +14,6 @@ jellyfin_package_dependencies:
   - gnupg
   - libicu72
   - python3-debian # deb822_repository module
-  - ssl-cert # snakeoil certs
 
 # convert new architecture naming to old architecture naming
 jellyfin_deb_architecture: "{{ jellyfin_ansible_deb_architectures[ansible_architecture] }}"
