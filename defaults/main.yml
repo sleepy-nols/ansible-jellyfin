@@ -52,6 +52,8 @@ jellyfin_log_level: Warning # Verbose, Debug, Information, Warning, Error, Fatal
 jellyfin_log_level_override:
   Microsoft: Warning
   System: Warning
+  # always log authentication failures
+  Jellyfin.Server.Implementations.Users.UserManager: Information
 
 jellyfin_log_file_name: jellyfin.log
 jellyfin_log_rolling_interval: Infinite # Infinite, Year, Month, Day, Hour, Minute
