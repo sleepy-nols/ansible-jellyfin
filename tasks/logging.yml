@@ -24,8 +24,8 @@
   ansible.builtin.template:
     src: templates/etc/jellyfin/logging.json.j2
     dest: "{{ jellyfin_config_dir }}/logging.json"
-    owner: root
-    group: root
+    owner: "{{ jellyfin_unix_user }}"
+    group: "{{ jellyfin_unix_group }}"
     mode: "{{ jellyfin_permission_etc_file }}"
   notify:
     - restart_jellyfin
