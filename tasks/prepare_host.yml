@@ -24,7 +24,7 @@
     state: directory
     owner: "{{ jellyfin_unix_user }}"
     group: "{{ jellyfin_unix_group }}"
-    mode: "0755"
+    mode: "0750"
   loop:
     - "{{ jellyfin_cache_dir }}"
     - "{{ jellyfin_data_dir }}"

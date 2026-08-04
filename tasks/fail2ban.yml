@@ -15,7 +15,7 @@
   ansible.builtin.template:
     src: templates/etc/fail2ban/jail.d/jellyfin.j2
     dest: /etc/fail2ban/jail.d/jellyfin.local
-    mode: "0744"
+    mode: "0644"
   notify: Restart fail2ban
   diff: true
 
@@ -23,6 +23,15 @@
   ansible.builtin.template:
     src: templates/etc/fail2ban/filter.d/jellyfin.j2
     dest: /etc/fail2ban/filter.d/jellyfin.conf
-    mode: "0744"
+    mode: "0644"
+  notify: Restart fail2ban
+  diff: true
+
+- name: Fix debian defaults if backend is not configured yet
+  ansible.builtin.lineinfile:
+    path: /etc/fail2ban/jail.d/defaults-debian.conf
+    line: 'backend = systemd'
+    search_string: 'backend = systemd'
+    mode: "0644"
   notify: Restart fail2ban
   diff: true
