@@ -1,0 +1,7 @@
+---
+- name: Run Jellyfin Role
+  hosts: jellyfin
+  roles:
+    - ansible-jellyfin
+  vars:
+    jellyfin_fail2ban_enabled: true
