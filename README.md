@@ -48,6 +48,8 @@ Enable fail2ban integration for the Jellyfin login.
 jellyfin_fail2ban_ports:
   - "80"
   - "443"
+  - "8096"
+  - "8920"
 ```
 Set these if you use custom ports for Jellyfin.
 
