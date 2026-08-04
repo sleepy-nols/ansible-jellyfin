@@ -13,7 +13,7 @@
 
 - name: Create fail2ban jail
   ansible.builtin.template:
-    src: templates/fail2ban_jail.j2
+    src: templates/etc/fail2ban/jail.d/jellyfin.j2
     dest: /etc/fail2ban/jail.d/jellyfin.local
     mode: "0744"
   notify: Restart fail2ban
@@ -21,7 +21,7 @@
 
 - name: Create fail2ban filter
   ansible.builtin.template:
-    src: templates/fail2ban_filter.j2
+    src: templates/etc/fail2ban/filter.d/jellyfin.j2
     dest: /etc/fail2ban/filter.d/jellyfin.conf
     mode: "0744"
   notify: Restart fail2ban
