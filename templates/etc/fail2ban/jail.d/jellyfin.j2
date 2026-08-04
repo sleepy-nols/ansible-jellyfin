@@ -13,4 +13,7 @@ filter = jellyfin
 maxretry = {{ jellyfin_fail2ban_maxretry }}
 bantime = {{ jellyfin_fail2ban_bantime }}
 findtime = {{ jellyfin_fail2ban_findtime }}
+bantime.increment = {{ jellyfin_fail2ban_bantime_increment }}
+bantime.factor = {{ jellyfin_fail2ban_bantime_factor }}
+bantime.rndtime = {{ jellyfin_fail2ban_bantime_rndtime }}
 logpath = {{ jellyfin_log_dir }}/jellyfin*.log
