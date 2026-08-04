@@ -33,8 +33,8 @@ jellyfin_log_file_path: "{{ jellyfin_log_dir }}/{{ jellyfin_log_file_name }}"
 jellyfin_apt_signing_key_uri: https://repo.jellyfin.org/jellyfin_team.gpg.key
 
 # --- permissions ---
-jellyfin_permission_etc_file: "0644"
-jellyfin_permission_etc_dir: "0755"
+jellyfin_permission_etc_file: "0640"
+jellyfin_permission_etc_dir: "0750"
 
 # --- fail2ban ---
 jellyfin_fail2ban_enabled: false
